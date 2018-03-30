@@ -20,10 +20,8 @@ int * merge_arrays(int * array1, int * array2){
         for (int j = start; j < size_of_arrays; ++j) {
             if (array2[i] <= merged_array[j] || merged_array[j] > merged_array[j+1]){
                 int tmp = merged_array[j+1];
-                for (int a = j; a < size_of_arrays - 1; ++j){
-                    int ttmp = merged_array[a+1];
-                    merged_array[a+1] = tmp;
-                    tmp = ttmp;
+                for (int a = size_of_arrays; a > j - 1; --a){
+                    merged_array[a] = merged_array[a-1];
                 }
                 merged_array[j] = array2[i];
                 start = j;
@@ -45,5 +43,6 @@ int main() {
     for (int i = 0; i < count_of(arr1) + count_of(arr2); ++i) {
         cout << merged_array[i] << " ";
     }
+    cout << endl;
     return 0;
 }
